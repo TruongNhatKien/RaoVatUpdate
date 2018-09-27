@@ -1,0 +1,29 @@
+:host{
+    .container{
+        display: flex;
+        width: 69%;
+        padding: 30px;
+        .cl{
+            flex: 1;
+            h2{
+                font-size: 14px;
+                margin-top: 20px;
+                font-weight: bold;
+            }
+            ul{
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                li{
+                    font-size: 14px;
+                    margin: 0;
+                    padding: 0;
+                    margin-bottom: 5px;
+                    a{
+                        color: #000000;
+                    }
+                }
+            }
+        }
+    }
+}

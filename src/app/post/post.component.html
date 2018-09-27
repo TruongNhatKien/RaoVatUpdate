@@ -1,0 +1,23 @@
+<app-header></app-header>
+<form>
+  <div class="form-group" >
+    <select id="where" (change)="selectChangeHandler($event)">
+      <option disabled>Chọn Khu Vực</option>
+      <option value="Toàn Quốc">Toàn Quốc</option>
+      <option value="Hà Nội">Hà Nội</option>
+      <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+      <option value="Đà Nẵng">Đà Nẵng</option>
+    </select>
+    <input type="text" class="form-control" placeholder="Nhập tên sản phẩm cần đăng tin" [(ngModel)]="namePr" [ngModelOptions]="{standalone: true}" required>
+    <input class="form-control" id="price" placeholder="Giá" type="number" min="0" [(ngModel)]="pricePr" [ngModelOptions]="{standalone: true}" required>
+    <textarea class="form-control" id="info" placeholder="Thông tin sản phẩm " rows ="5" [(ngModel)]="infoPr" [ngModelOptions]="{standalone: true}"></textarea>
+    <div class="uploadimg">
+      <img [src]="imageUrl">
+      <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
+    </div>
+    <button class="post" (click)="postIfPr()">Đăng tin</button>
+  </div>
+</form>
+<div class="foot">
+  <app-footer></app-footer>
+</div>

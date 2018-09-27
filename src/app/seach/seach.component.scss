@@ -1,0 +1,32 @@
+:host{
+    .form{
+        margin: 0 auto;
+        width: 50%;
+        background: #ffffff;
+        .search{
+            padding: 10px 20px;
+            input{
+                border-radius: 10px;
+                border: 1px solid #c1c1c1c1;
+                width: 200px;
+                -webkit-transition: width 0.7s ease-in-out;
+                -moz-transition: width 0.7s ease-in-out;
+                -ms-transition: width 0.7s ease-in-out;
+                -o-transition: width 0.7s ease-in-out;
+                transition: width 0.7s ease-in-out;
+            }
+            input:focus{
+                width: 300px;
+            }
+        }
+        #where{
+            margin-bottom: 40px;
+            margin-left: 20px;
+            padding: 3px;
+        }
+        #list{
+            margin-bottom: 40px;
+            padding: 3px;
+        }
+    }
+}

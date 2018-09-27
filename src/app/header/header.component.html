@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="header-left">
+      <div class="logo" routerLink="/home">
+        <a href>Matket</a>
+        <img src="http://localhost:4200/dist/RaoVat/assets/ck.png" alt="logo">
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="center">
+        <a routerLink="/search"><img src="https://static.chotot.com.vn/storage/marketplace/common/searchActive.svg">Tìm
+          rao vặt</a>
+      </div>
+
+      <div class="center">
+        <a routerLink="/published"><img src="https://static.chotot.com.vn/storage/marketplace/common/userActive.svg">
+          Tôi bán</a>
+      </div>
+
+      <div class="center">
+        <a>
+          <img src="https://static.chotot.com.vn/storage/marketplace/common/notificationActive.svg" alt="notify"> Thông
+          báo</a>
+      </div>
+
+      <div class="center">
+        <a routerLink="/post">Đăng tin</a>
+      </div>
+
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="dropdown">
+      <span *ngIf="local" class="dropdown-toggle" data-toggle="dropdown">
+        <img alt="Account photo" src="https://cfl.dropboxstatic.com/static/images/avatar/faceholder-32-vflKWtuU5.png">
+      </span>
+      <ul class="dropdown-menu">
+        <li>
+          Xin chào: {{username}}
+        </li>
+        <li>
+          <hr>
+        </li>
+        <li><a (click)="infoUser()">Thông tin cá nhân</a></li>
+        <li>
+          <hr>
+        </li>
+        <li>
+          <a (click)="SignOut()">Sign Out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

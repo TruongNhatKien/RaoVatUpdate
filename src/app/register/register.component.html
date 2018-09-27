@@ -1,0 +1,134 @@
+<form [formGroup]="registerForm">
+    <div class="title">
+        <div class="title-si">Đăng Kí</div>
+        <div class="inp">
+            <div class="form">
+                <mat-form-field>
+                    <input matInput type="text" id="firstname" class="firstname" placeholder="First name"
+                        formControlName="firstname" [(ngModel)]="firstnameRe" required>
+                </mat-form-field>
+                <div *ngIf="registerForm.controls.firstname.invalid && (registerForm.controls.firstname.dirty || registerForm.controls.firstname.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registerForm.controls.firstname.errors.required">
+                        * First Name is required.
+                    </div>
+                    <div *ngIf="registerForm.controls.firstname.errors.minlength">
+                        * First Name must be at least 3 characters long.
+                    </div>
+                    <div *ngIf="registerForm.controls.firstname.errors.maxlength">
+                        * First Name cannot be more than 50 characters long.
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form">
+                <mat-form-field>
+                    <input matInput type="text" id="lastname" class="lastname" placeholder="Last name" formControlName="lastname" [(ngModel)]="lastnameRe" required>
+                </mat-form-field>
+                <div *ngIf="registerForm.controls.lastname.invalid && (registerForm.controls.lastname.dirty || registerForm.controls.lastname.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registerForm.controls.lastname.errors.required">
+                        * Last Name is required.
+                    </div>
+                    <div *ngIf="registerForm.controls.lastname.errors.minlength">
+                        * Last Name must be at least 3 characters long.
+                    </div>
+                    <div *ngIf="registerForm.controls.lastname.errors.maxlength">
+                        * Last Name cannot be more than 50 characters long.
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form">
+                <mat-form-field>
+                    <input matInput type="email" id="email" class=email placeholder="Email" formControlName="email" [(ngModel)]="emailRe" required>
+                </mat-form-field>
+                <div *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registerForm.controls.email.errors.required">
+                        * Email is required.
+                    </div>
+                    <div *ngIf="registerForm.controls.email.errors.minlength">
+                        * Email must be at least 10 characters long.
+                    </div>
+                    <div *ngIf="registerForm.controls.email.errors.maxlength">
+                        * Email cannot be more than 100 characters long.
+                    </div>
+                    <div *ngIf="registerForm.controls.email.errors.pattern">
+                        * Enter a valid email.
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form">
+                <mat-form-field>
+                    <input matInput #password type="password" id="password" class="password" placeholder="Password" formControlName="password" [(ngModel)]="passwordRe" required>
+                </mat-form-field>
+                <div *ngIf="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registerForm.controls.password.errors.required">
+                        * Password is required.
+                    </div>
+                    <div *ngIf="registerForm.controls.password.errors.minlength">
+                        * Password must be at least 8 characters long.
+                    </div>
+                    <div *ngIf="registerForm.controls.password.errors.maxlength">
+                        * Password cannot be more than 50 characters long.
+                    </div>
+                    <div *ngIf="registerForm.controls.password.errors.pattern">
+                        * Your password must contain at least one uppercase, one lowercase, and one number.
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form">
+                <mat-form-field>
+                    <input matInput #passwordconfirm type="password" id="passwordConfirm" class="Password Confirm"
+                        placeholder="Password Confirm" formControlName="passwordConfirm" required>
+                </mat-form-field>
+                <div *ngIf="registerForm.controls.passwordConfirm.invalid && (registerForm.controls.passwordConfirm.dirty || registerForm.controls.passwordConfirm.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registerForm.controls.passwordConfirm.errors.required">
+                        * Password confirm is required.
+                    </div>
+                    <div *ngIf="registerForm.controls.passwordConfirm.errors.minlength">
+                        * Password confirm must be at least 8 characters long.
+                    </div>
+                    <div *ngIf="registerForm.controls.passwordConfirm.errors.maxlength">
+                        * Password confirm cannot be more than 50 characters long.
+                    </div>
+                    <div *ngIf="registerForm.controls.passwordConfirm.errors.pattern">
+                        * Your password confirm must contain at least one uppercase, one lowercase, and one number.
+                    </div>
+                    <div *ngIf="password.value !== passwordconfirm.value">
+                        * Password mismatch.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text">This page is protected by reCAPTCHA, and subject to the Google
+            <a href="# ">Privacy Policy</a> and
+            <a href="# ">Terms of Service</a>
+            <br>
+            <div class="check-si">
+                <input type="checkbox" (click)="isCheckbox()"> Tôi đồng ý với điều khoản của
+                <a>Matket CK</a>
+                <br>
+                <a routerLink="/login">Bạn đã có tài khoản?</a>
+                <button mat-button class="btn" (click)="register()">Đăng kí</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- <div *ngIf="users?.length> 0;else noUsers">
+    <ul *ngFor="let user of users" class="collection">
+      <li class="collection-user">
+        <strong>{{user.email}}:</strong>{{user.pass}}</li>
+    </ul>
+  </div>
+  
+  <ng-template #noUsers>
+    <hr>
+    <h5>There are no Users to list</h5>
+  </ng-template> -->

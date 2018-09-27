@@ -1,0 +1,25 @@
+:host{
+    .carousel{
+        background: #F4F4F4;
+        .carousel-indicators{
+            li{
+                color: aliceblue;
+                background-color: aliceblue;
+            }
+            li.active{
+                background-color: #9B9B9B;
+            }
+        }
+        .carousel-inner{
+            .item{
+               img{
+                   margin: 0 auto;
+               }
+            }
+        }
+        // .left, .right{
+        //     background-image: none;
+        //     color: #1ECBF4;
+        // }
+    }
+}

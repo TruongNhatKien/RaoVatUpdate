@@ -1,0 +1,104 @@
+:host{
+    .container{
+        margin-top: 15px;
+        background: #fff;
+        padding: 0 10px;
+        width: 69%;
+        .incre{
+            display: flex;
+            .img{
+                flex: 1;
+                img{
+                    max-width: 100%;    
+                    padding: 20px;            }
+            }
+            .dn{
+                flex: 1;
+                text-align: center;
+                padding: 20px;
+                h2{
+                    margin: 0;
+                    font-size: 16px;
+                    color: #000;
+                    line-height: 1.4;
+                }
+                a{
+                    display: block;
+                    color: #ffffff;
+                    font-weight: 700;
+                    background: #fc9827;
+                    font-size: 12px;
+                    margin: 10px auto;
+                    width: 65%;
+                    line-height: 23px;
+                    border-radius: 4px;
+                    padding: 6px 12px;
+                    cursor: pointer;
+                    text-transform: uppercase;
+                }
+                a:hover{
+                    text-decoration: none;
+                    background: #95d4e4;
+                    color: rgb(161, 148, 148);
+                }
+                p{
+                    cursor: pointer;
+                }
+                p:hover{
+                    text-decoration: none;
+                    color: #fc9827;
+                }
+            }
+        }
+        ul{
+            padding: 10px 0;
+            float: left;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            li{
+                float: left;
+                border: 10px solid #fff;
+                overflow: hidden;
+                width: 20%;
+                list-style: none;
+                position: relative;
+                cursor: pointer;
+                list-style-type: none;
+                a{
+                    color: #fff;
+                    overflow: hidden;
+                    img{
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                        filter: grayscale(0%);
+                        transition: 2s;
+                    }
+                    .img-list{
+                        position: absolute;
+                        z-index: 1;
+                        top: 0;
+                        left: 0;
+                        bottom: auto;
+                        background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, transparent 60%, transparent 100%);
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                a:hover img{
+                    filter: grayscale(100%);
+                        transform: scale(1.2);
+                }
+                a:hover .img-list span{
+                    color: rgb(145, 185, 238);
+                }
+            }
+        }
+
+        .info{
+            padding: 10px 20px;
+        }
+    }
+}

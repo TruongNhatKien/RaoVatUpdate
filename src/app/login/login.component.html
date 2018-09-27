@@ -1,0 +1,62 @@
+<form [formGroup]="loginForm">
+  <div class="title">
+    <div class="title-si">Đăng nhập</div>
+    <div class="inp">
+      <div class="form">
+        <mat-form-field>
+          <input matInput #email type="email" id="email" class=email placeholder="Email" formControlName="email" required>
+        </mat-form-field>
+        <div *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)" class="alert alert-danger">
+          <div *ngIf="loginForm.controls.email.errors.required">
+            * Email is required.
+          </div>
+          <div *ngIf="loginForm.controls.email.errors.minlength">
+            * Email must be at least 10 characters long.
+          </div>
+          <div *ngIf="loginForm.controls.email.errors.maxlength">
+            * Email cannot be more than 100 characters long.
+          </div>
+          <div *ngIf="loginForm.controls.email.errors.pattern">
+            * Enter a valid email.
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="form">
+        <mat-form-field>
+          <input matInput #pass type="password" id="password" class="password" placeholder="Password" formControlName="password" required>
+        </mat-form-field>
+        <div *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+          class="alert alert-danger">
+          <div *ngIf="loginForm.controls.password.errors.required">
+            * Password is required.
+          </div>
+          <div *ngIf="loginForm.controls.password.errors.minlength">
+            * Password must be at least 8 characters long.
+          </div>
+          <div *ngIf="loginForm.controls.password.errors.maxlength">
+            * Password cannot be more than 50 characters long.
+          </div>
+          <div *ngIf="loginForm.controls.password.errors.pattern">
+            * Your password must contain at least one uppercase, one lowercase, and one number.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="text">This page is protected by reCAPTCHA, and subject to the Google
+      <a href="#">Privacy Policy</a> and
+      <a href="#">Terms of Service</a>
+      <br>
+      <div class="check-si">
+        <input type="checkbox"> Ghi nhớ tài khoản
+      </div>
+      <br>
+      <a (click)="forgot()">Quên mật khẩu</a>
+      <br>
+      <a routerLink="/register">Bạn chưa có tài khoản?</a>
+      <button mat-button class="btn" (click)="login(email.value, pass.value)" [disabled]="!loginForm.valid">Đăng nhập</button>
+    </div>
+  </div>
+</form>
+

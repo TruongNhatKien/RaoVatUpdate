@@ -1,0 +1,23 @@
+{
+  "Product": [],
+  "User": [
+    {
+      "name": "nhat kien",
+      "email": "truongkieenn@gmail.com",
+      "pass": "Nhatkien96",
+      "id": 1
+    },
+    {
+      "name": "chuong nguyen",
+      "email": "chuongnguyen@gmail.com",
+      "pass": "Chuongnguyen96",
+      "id": 2
+    },
+    {
+      "name": "test test",
+      "email": "test@gmail.com",
+      "pass": "Nhatkien96",
+      "id": 3
+    }
+  ]
+}

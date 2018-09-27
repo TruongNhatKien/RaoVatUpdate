@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="form">
+  <div class="search">
+    <!-- <span class="glyphicon glyphicon-search"></span> -->
+    <input type="text" #input (keyup)="search(input.value)" placeholder="Tìm kiếm sản phẩm">
+  </div>
+
+  <select id="where">
+    <option>Toàn Quốc</option>
+    <option>Hà Nội</option>
+    <option>Hồ Chí Minh</option>
+    <option>Đà Nẵng</option>
+  </select>
+
+  <select id="list">
+    <option>Tất cả danh mục</option>
+    <option>Nhà cửa</option>
+    <option>Xe</option>
+    <option>Đồ điện tử</option>
+    <option>Mẹ và bé</option>
+    <option>Nội ngoại thất</option>
+  </select>
+  
+</div>
+<app-footer></app-footer>

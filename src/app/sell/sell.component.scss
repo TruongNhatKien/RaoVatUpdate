@@ -1,0 +1,39 @@
+:host{
+    .container{
+        background: #ffffff;;
+    .content{
+        display: flex;
+        ul{
+            overflow-x: auto;
+            overflow-y: hidden;
+            width: 100%;
+            text-transform: uppercase;
+            border-top: 1px solid #dbdbdb;
+            font-size: 13px;
+            border-bottom: 1px solid #dbdbdb;
+            display: flex;
+            li{      
+                padding: 10px 20px;
+                margin-right: 20px;
+                list-style-type: none;
+                position: relative;
+                a{
+                    border-radius: 0;
+                    color: #000;
+                    border: 0;
+                    font-weight: 500;
+                    opacity: .5;
+                    text-decoration: none;
+                    border: 0;
+                }
+                a:focus{
+                    color: #000!important;
+                    font-weight: 600!important;
+                    border-bottom: 2px solid #f8c938!important;
+                    opacity: 1!important;
+                }
+            }
+        }
+    }
+}
+}
