@@ -28,6 +28,10 @@ export class HttpService {
     return this.http.post<User>(this.APIinsert, user, httpOptions);
   }
 
+  getReGis(): any {
+    return this.http.get(this.APIinsert);
+  }
+
   loGIn(user : User) : any {
     return this.http.post<User>(this.APIlogin, user, httpOptions);
   }

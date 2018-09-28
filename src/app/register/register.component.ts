@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, Ng
 import { Router } from '@angular/router';
 import { AuthService } from '../providers/auth.service';
 import { HttpService } from '../providers/http.service';
+import { StoreService } from '../providers/store.service';
+import { User } from '../interfaces/User';
 
 
 
@@ -13,6 +15,7 @@ import { HttpService } from '../providers/http.service';
 })
 export class RegisterComponent implements OnInit {
 
+  users: User[];
   registerForm: FormGroup;
   public checkbox = false;
   public formErrors = {
@@ -22,11 +25,6 @@ export class RegisterComponent implements OnInit {
     password: '',
     passwordConfirm: '',
   };
-
-  firstnameRe: string = '';
-  lastnameRe: string = '';
-  emailRe: string = '';
-  passwordRe: string = '';
 
   public passwordcf(c: AbstractControl): any {
     if (!c.parent || !c) { return; }
@@ -48,6 +46,12 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+
+    this.httpService.getReGis().subscribe(data => {
+      this.users = data;
+      console.log(this.users);
+
+    });
   }
 
   isCheckbox() {
@@ -60,21 +64,17 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  public register() {
+  public register(firstnameRe, lastnamRe, emailRe, passwordRe) {
     if (this.checkbox === true) {
       this.authService.register().subscribe(
         () => {
           const regis: any = {
-            name: this.firstnameRe + ' ' + this.lastnameRe,
-            email: this.emailRe,
-            pass: this.passwordRe,
+            name: firstnameRe + '' + lastnamRe,
+            email: emailRe,
+            pass: passwordRe,
           };
           this.httpService.reGis(regis).subscribe(data => {
           });
-          this.lastnameRe = '';
-          this.firstnameRe = '';
-          this.emailRe = '';
-          this.passwordRe = '';
           // dang ki thanhcong
           this.router.navigate(['/login']);
         },
