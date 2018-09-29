@@ -25,7 +25,7 @@ export const appRoutes: Routes = [
   //   ]
   // },
   {
-    path: '',
+    path: 'product',
     // canActivate: [AuthGuard],
     children: [
       {
@@ -34,7 +34,7 @@ export const appRoutes: Routes = [
       },
     ]
   }, {
-    path: '',
+    path: 'product',
     // canActivate: [AuthGuard],
     children: [
       {
@@ -44,7 +44,7 @@ export const appRoutes: Routes = [
     ]
   },
   {
-    path: '',
+    path: 'user',
     component: AuthenticatedComponent,
     children: [
       { path: 'login', component: LoginComponent },
@@ -52,7 +52,7 @@ export const appRoutes: Routes = [
     ],
   },
   {
-    path: '',
+    path: 'product',
     component: SellComponent,
     // canActivate: [AuthGuard],
     children: [
