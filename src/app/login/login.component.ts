@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../providers/auth.service';
 import { User } from '../interfaces/User';
 import { HttpService } from '../providers/http.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,35 +15,52 @@ import { HttpService } from '../providers/http.service';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
+  user: User;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private toastr: ToastrService
+
   ) { }
 
   ngOnInit() {
     this.buildForm();
   }
 
+  showSuccess() {
+    this.toastr.success('Đăng Nhập thành công!');
+  }
+
+  showError() {
+    this.toastr.error('Tên hoặc mật khẩu không đúng!');
+  }
+
   public login(email, pass) {
-    this.authService.login().subscribe(
-      (resp) => {
-        let user: User = {
-          email: email,
-          pass: pass
-        };
-        this.httpService.loGIn(user).subscribe(data => {
-        });
-        localStorage.setItem('user', JSON.stringify(user));
-        // dang nhap thanhcong
-        this.router.navigate(['/home']);
-      },
-      () => {
-        //
+    this.httpService.getLogin().subscribe(user => {
+      this.user = user;
+      if (this.user === null) {
+        this.showError();
       }
-    );
+      else {
+        this.authService.login().subscribe(
+          (resp) => {
+            let user: User = {
+              email: email,
+              pass: pass
+            };
+            this.httpService.loGIn(user).subscribe(data => {
+            });
+            localStorage.setItem('user', JSON.stringify(user));
+            this.showSuccess();
+            // dang nhap thanhcong
+            this.router.navigate(['/home']);
+          },
+        );
+      }
+    });
   }
 
 

@@ -3,8 +3,9 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, Ng
 import { Router } from '@angular/router';
 import { AuthService } from '../providers/auth.service';
 import { HttpService } from '../providers/http.service';
-import { StoreService } from '../providers/store.service';
 import { User } from '../interfaces/User';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 
@@ -15,7 +16,7 @@ import { User } from '../interfaces/User';
 })
 export class RegisterComponent implements OnInit {
 
-  users: User[];
+  user: User;
   registerForm: FormGroup;
   public checkbox = false;
   public formErrors = {
@@ -42,16 +43,11 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private httpService: HttpService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.buildForm();
-
-    this.httpService.getReGis().subscribe(data => {
-      this.users = data;
-      console.log(this.users);
-
-    });
   }
 
   isCheckbox() {
@@ -63,28 +59,44 @@ export class RegisterComponent implements OnInit {
     console.log(this.checkbox);
   }
 
-
-  public register(firstnameRe, lastnamRe, emailRe, passwordRe) {
-    if (this.checkbox === true) {
-      this.authService.register().subscribe(
-        () => {
-          const regis: any = {
-            name: firstnameRe + '' + lastnamRe,
-            email: emailRe,
-            pass: passwordRe,
-          };
-          this.httpService.reGis(regis).subscribe(data => {
-          });
-          // dang ki thanhcong
-          this.router.navigate(['/login']);
-        },
-        (err) => {
-          //
-        }
-      );
-    }
+  showSuccess() {
+    this.toastr.success('Đăng Kí thành công!');
   }
 
+  showError() {
+    this.toastr.error('Email đã tồn tại, vui lòng nhập Email khác!');
+  }
+
+  showErrorCheck() {
+    this.toastr.error('Vui lòng chọn đồng ý với điều khoản của Matket CK!');
+  }
+
+
+  public register(firstnameRe, lastnamRe, emailRe, passwordRe) {
+    this.httpService.getReGis().subscribe(user => {
+      this.user = user;
+      if (this.checkbox === false) {
+        this.showErrorCheck();
+      } else {
+        if (this.user === null) {
+          this.authService.register().subscribe(
+            () => {
+              const regis: any = {
+                name: firstnameRe + '' + lastnamRe,
+                email: emailRe,
+                pass: passwordRe,
+              };
+              this.httpService.reGis(regis).subscribe(data => {
+              });
+              this.showSuccess();
+              // dang ki thanhcong
+              this.router.navigate(['/login']);
+            },
+          );
+        }
+      }
+    });
+  }
 
   private buildForm() {
     this.registerForm = this.formBuilder.group({

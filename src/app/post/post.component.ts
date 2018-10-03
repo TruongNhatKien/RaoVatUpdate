@@ -36,9 +36,9 @@ export class PostComponent implements OnInit {
         info: this.infoPr,
         addr: this.addrPr,
       };
-      this.httpService.postIfPr(postIf).subscribe(data => {
-        // this.fileStore.loadDataIfNeed();
-      });
+      // this.httpService.postIfPr(postIf).subscribe(data => {
+      //   // this.fileStore.loadDataIfNeed();
+      // });
       this.namePr = '';
       this.pricePr = '';
       this.infoPr = '';

@@ -27,7 +27,9 @@ import { SelledComponent } from './selled/selled.component';
 import { SeachComponent } from './seach/seach.component';
 import { PostComponent } from './post/post.component';
 
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,7 @@ import { HttpClientModule } from '@angular/common/http';
     SeachComponent,
     PostComponent
   ],
-  
+
   exports: [RouterModule],
   imports: [
     BrowserModule,
@@ -58,7 +60,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    MatDialogModule
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
@@ -67,6 +71,6 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   bootstrap: [
     AppComponent,
-]
+  ]
 })
 export class AppModule { }
