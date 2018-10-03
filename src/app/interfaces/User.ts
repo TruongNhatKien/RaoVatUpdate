@@ -7,4 +7,5 @@ export interface User {
     old?: number;
     sex?: string;
     avata?: string;
+    cash?:number;
 }

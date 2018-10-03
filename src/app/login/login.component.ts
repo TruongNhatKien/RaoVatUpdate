@@ -39,26 +39,25 @@ export class LoginComponent implements OnInit {
   }
 
   public login(email, pass) {
+    this.authService.login().subscribe(
+      (resp) => {
+        const user: User = {
+          email: email,
+          pass: pass
+        };
+        this.httpService.loGIn(user).subscribe(data => {
+        });
+        localStorage.setItem('user', JSON.stringify(user));
+      },
+    );
     this.httpService.getLogin().subscribe(user => {
       this.user = user;
       if (this.user === null) {
         this.showError();
-      }
-      else {
-        this.authService.login().subscribe(
-          (resp) => {
-            let user: User = {
-              email: email,
-              pass: pass
-            };
-            this.httpService.loGIn(user).subscribe(data => {
-            });
-            localStorage.setItem('user', JSON.stringify(user));
-            this.showSuccess();
-            // dang nhap thanhcong
-            this.router.navigate(['/home']);
-          },
-        );
+      } else {
+        this.showSuccess();
+        // dang nhap thanhcong
+        this.router.navigate(['/home']);
       }
     });
   }

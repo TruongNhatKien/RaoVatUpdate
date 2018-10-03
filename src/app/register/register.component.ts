@@ -73,26 +73,28 @@ export class RegisterComponent implements OnInit {
 
 
   public register(firstnameRe, lastnamRe, emailRe, passwordRe) {
+    this.authService.register().subscribe(
+      () => {
+        const regis: any = {
+          name: firstnameRe + '' + lastnamRe,
+          email: emailRe,
+          pass: passwordRe,
+        };
+        this.httpService.reGis(regis).subscribe(data => {
+        });
+      },
+    );
     this.httpService.getReGis().subscribe(user => {
       this.user = user;
       if (this.checkbox === false) {
         this.showErrorCheck();
       } else {
         if (this.user === null) {
-          this.authService.register().subscribe(
-            () => {
-              const regis: any = {
-                name: firstnameRe + '' + lastnamRe,
-                email: emailRe,
-                pass: passwordRe,
-              };
-              this.httpService.reGis(regis).subscribe(data => {
-              });
-              this.showSuccess();
-              // dang ki thanhcong
-              this.router.navigate(['/login']);
-            },
-          );
+          this.showError();
+        } else {
+          this.showSuccess();
+          // dang ki thanhcong
+          this.router.navigate(['/login']);
         }
       }
     });
