@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
     dialogRef.afterClosed().subscribe((isConfirm) => {
       if (isConfirm) {
         // logout
-        this.router.navigate(['/login']);
+        this.router.navigate(['/user/login']);
         localStorage.clear();
         location.reload();
       }
