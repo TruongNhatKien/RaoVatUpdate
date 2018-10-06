@@ -3,10 +3,13 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth.service';
+import { User } from '../interfaces/User';
+import { HttpService } from './http.service';
 
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  user:User;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -16,12 +19,13 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean> | Promise<boolean> | boolean {
-    // da dang nhap =>
-    if (this.authService.isLogged) {
-      return true;
-    }
+    this.user = JSON.parse(localStorage.getItem('user'));
     // go to login
-    this.router.navigate(['/login']);
-    return false;
+    if (this.user === null) {
+      this.router.navigate(['/user/login']);
+      return false;
+    }
+    // da dang nhap =>
+    return true;
   }
 }

@@ -56,7 +56,6 @@ export class RegisterComponent implements OnInit {
     } else {
       this.checkbox = true;
     }
-    console.log(this.checkbox);
   }
 
   showSuccess() {
@@ -73,31 +72,23 @@ export class RegisterComponent implements OnInit {
 
 
   public register(firstnameRe, lastnamRe, emailRe, passwordRe) {
-    this.authService.register().subscribe(
-      () => {
-        const regis: any = {
-          name: firstnameRe + '' + lastnamRe,
-          email: emailRe,
-          pass: passwordRe,
-        };
-        this.httpService.reGis(regis).subscribe(data => {
-        });
-      },
-    );
-    this.httpService.getReGis().subscribe(user => {
-      this.user = user;
-      if (this.checkbox === false) {
-        this.showErrorCheck();
-      } else {
-        if (this.user === null) {
-          this.showError();
-        } else {
+    const regis: any = {
+      name: firstnameRe + '' + lastnamRe,
+      email: emailRe,
+      pass: passwordRe,
+    };
+    if (this.checkbox === false) {
+      this.showErrorCheck();
+    } else {
+      this.httpService.reGis(regis).subscribe(data => {
+        if (data) {
           this.showSuccess();
-          // dang ki thanhcong
-          this.router.navigate(['/login']);
+          this.router.navigate(['/user/login']);
+        } else {
+          this.showError();
         }
-      }
-    });
+      });
+    }
   }
 
   private buildForm() {

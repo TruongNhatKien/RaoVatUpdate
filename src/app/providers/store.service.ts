@@ -14,7 +14,7 @@ export class StoreService {
   ) { }
 
   public loadDataIfNeed() {
-    this.httpService.getReGis().subscribe((data) => {
+    this.httpService.getUser().subscribe((data) => {
       this.users.next(data);
     });
   }

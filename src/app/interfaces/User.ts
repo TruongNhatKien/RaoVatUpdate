@@ -4,8 +4,10 @@ export interface User {
     email: string;
     addr?: string;
     number?: string;
-    old?: number;
+    old?: string;
     sex?: string;
     avata?: string;
     cash?:number;
+    idUser?:number;
+    phanQuyen?:string;
 }

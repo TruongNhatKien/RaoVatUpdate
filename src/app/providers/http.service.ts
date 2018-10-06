@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
-import { Product } from '../interfaces/Product';
 import { User } from '../interfaces/User';
+import { Observable } from 'rxjs';
+import { Product } from '../interfaces/Product';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,34 +18,37 @@ export class HttpService {
   public APIregis = 'http://localhost:8080/WebsiteRaoVat/user/register';
   public APIlogin = 'http://localhost:8080/WebsiteRaoVat/user/login';
   public apiAllUser = 'http://localhost:8080/WebsiteRaoVat/user/getall';
+  public ApiPublished = 'http://localhost:8080/WebsiteRaoVat/product/published';
+  public apiPost = 'http://localhost:8080/WebsiteRaoVat/product/post';
+  public apiSelled = 'http://localhost:8080/WebsiteRaoVat/product/selled';
 
   constructor(private http: HttpClient) { }
 
-  // postIfPr(info: Product): any {
-  //   return this.http.post<Product>(this.api, info, httpOptions);
-  // }
+  postPro(info: Product): any {
+    return this.http.post<Product>(this.apiPost, info, httpOptions);
+  }
 
-    // getProduct(): any {
+  // getProduct(): any {
   //   return this.http.get(this.api);
   // }
 
-  reGis(user: User): any {
+  reGis(user: User): Observable<User> {
     return this.http.post<User>(this.APIregis, user, httpOptions);
   }
 
-  getReGis(): any {
-    return this.http.get(this.APIregis);
-  }
-
-  loGIn(user : User) : any {
+  loGIn(user: User): Observable<User> {
     return this.http.post<User>(this.APIlogin, user, httpOptions);
-  }
-
-  getLogin(): any {
-    return this.http.get(this.APIlogin);
   }
 
   getUser(): any {
     return this.http.get(this.apiAllUser);
+  }
+
+  getPublished(idUser): any {
+    return this.http.get(`${this.ApiPublished}/${idUser}`);
+  }
+
+  getSelled(idUser): any {
+    return this.http.get(`${this.apiSelled}/${idUser}`);
   }
 }

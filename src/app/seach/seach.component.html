@@ -1,25 +1,31 @@
 <app-header></app-header>
 <div class="form">
   <div class="search">
-    <!-- <span class="glyphicon glyphicon-search"></span> -->
     <input type="text" #input (keyup)="search(input.value)" placeholder="Tìm kiếm sản phẩm">
   </div>
 
-  <select id="where">
-    <option>Toàn Quốc</option>
-    <option>Hà Nội</option>
-    <option>Hồ Chí Minh</option>
-    <option>Đà Nẵng</option>
+  <select id="where" (change)="selectChangeHandler($event)">
+    <option disabled>Chọn Khu Vực</option>
+    <option value="TQ">Toàn Quốc</option>
+    <option value="HN">Hà Nội</option>
+    <option value="HCM">Hồ Chí Minh</option>
+    <option value="DN">Đà Nẵng</option>
+  </select>
+  <select id="where" (change)="selectChangeHandlerPro($event)">
+    <option disabled>Chọn Danh Mục</option>
+    <option value=1>Chợ Tốt Nhà</option>
+    <option value=2>Chợ Tốt Xe</option>
+    <option value=3>Đồ Điện Tử</option>
+    <option value=4>Mẹ và bé</option>
+    <option value=5>Nội ngoại thất, Đồ gia dụng</option>
+    <option value=6>Thời trang, đồ dùng cá nhân</option>
+    <option value=7>Giải trí, Thể thao, Sở thích</option>
+    <option value=8>Thú cưng</option>
+    <option value=9>Đồ dùng văn phòng</option>
+    <option value=10>Việc làm</option>
+    <option value=11>Du lịch, Dịch vụ</option>
   </select>
 
-  <select id="list">
-    <option>Tất cả danh mục</option>
-    <option>Nhà cửa</option>
-    <option>Xe</option>
-    <option>Đồ điện tử</option>
-    <option>Mẹ và bé</option>
-    <option>Nội ngoại thất</option>
-  </select>
   
 </div>
 <app-footer></app-footer>

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
-  public isLogged = false;
+  isLogged = false;
 
   constructor() { }
 
@@ -14,16 +14,6 @@ export class AuthService {
         subscriber.next(this.isLogged);
         subscriber.complete();
       }, 500);
-    });
-  }
-
-  public register() {
-    return new Observable((subscriber) => {
-      setTimeout(() => {
-        this.isLogged = true;
-        subscriber.next(this.isLogged);
-        subscriber.complete();
-      });
     });
   }
 }

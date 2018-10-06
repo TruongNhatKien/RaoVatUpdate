@@ -1,3 +1,7 @@
-<p>
-  published works!
-</p>
+<div class="row">
+  <ul *ngFor="let pro of products" class="col-lg-4 col-md-4 col-sm-4">
+    <li>Tên: {{pro.name}}</li>
+    <li>Địa chỉ: {{pro.addr}}</li>
+    <li>Giá:{{pro.price}}</li>
+  </ul>
+</div>

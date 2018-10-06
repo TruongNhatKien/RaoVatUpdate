@@ -14,19 +14,19 @@ import { SeachComponent } from './seach/seach.component';
 export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // {
-  //   path: '',
-  //   // canActivate: [AuthGuard],
-  //   children: [
-  //     {
-  //       path: 'ads',
-  //       component: SellComponent
-  //     },
-  //   ]
-  // },
   {
     path: 'product',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'ads',
+        component: SellComponent
+      },
+    ]
+  },
+  {
+    path: 'product',
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'post',
@@ -35,7 +35,7 @@ export const appRoutes: Routes = [
     ]
   }, {
     path: 'product',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'search',
@@ -54,10 +54,10 @@ export const appRoutes: Routes = [
   {
     path: 'product',
     component: SellComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
-      { path: 'published', component: PublishedComponent },
-      { path: 'selled', component: SelledComponent },
+      { path: 'published/:idUser', component: PublishedComponent },
+      { path: 'selled/:idUser', component: SelledComponent },
     ],
   },
   { path: '**', component: NotFoundComponent },

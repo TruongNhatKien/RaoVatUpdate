@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../interfaces/User';
 import { LogoutConfirmComponent } from './logout-confirm';
 import { MatDialog } from '@angular/material';
+import { HttpService } from '../providers/http.service';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +14,12 @@ export class HeaderComponent implements OnInit {
 
   public local = false;
   user: User;
+  users: User[];
   username = '';
   constructor(
     private router: Router,
     private dialog: MatDialog,
+    private httpService: HttpService
   ) { }
 
   ngOnInit() {

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../providers/http.service';
-import { log } from 'util';
-import { DISABLED } from '@angular/forms/src/model';
-import { disableDebugTools } from '@angular/platform-browser';
+import { User } from '../interfaces/User';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,36 +13,58 @@ export class PostComponent implements OnInit {
 
   imageUrl: string = "./assets/default.jpg";
   fileToUpload: File = null;
+  user: User;
 
   namePr: string = '';
   pricePr: string = '';
   infoPr: string = '';
-  addrPr: string = '';
+  khuVucPr: string = '';
+  menuproductPr: number;
+  addrUser: string;
 
   constructor(
     private httpService: HttpService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.imageUrl;
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
+  showSuccess() {
+    this.toastr.success('Đăng tin thành công!');
+  }
+
+  showError() {
+    this.toastr.error('Bạn vui lòng nhập đầy đủ thông tin!');
+  }
+
+
   postIfPr() {
-    if (this.namePr.length !== 0 && this.addrPr.length !== 0 && this.pricePr.length !== 0 && this.infoPr.length !== 0) {
+    if (this.addrUser.length !== 0 && this.namePr.length !== 0 && this.khuVucPr.length !== 0 && this.pricePr.length !== 0 && this.infoPr.length !== 0 && this.menuproductPr !== 0) {
       const postIf: any = {
         name: this.namePr,
         price: this.pricePr,
         info: this.infoPr,
-        addr: this.addrPr,
+        khuVuc: this.khuVucPr,
+        idUser: this.user.idUser,
+        status: '',
+        menuproduct: this.menuproductPr,
+        tenUser: this.user.name,
+        title: this.namePr,
+        addr: this.addrUser,
       };
-      // this.httpService.postIfPr(postIf).subscribe(data => {
-      //   // this.fileStore.loadDataIfNeed();
-      // });
+      this.httpService.postPro(postIf).subscribe(data => {
+        // this.fileStore.loadDataIfNeed();
+        this.showSuccess();
+      });
       this.namePr = '';
       this.pricePr = '';
       this.infoPr = '';
-    } else if (this.namePr.length === 0 || this.infoPr.length === 0 || this.pricePr.length === 0 ||this.addrPr.length === 0) {
-      const checkAdd = confirm('Data is empty! Do you want exit?');
+      this.addrUser = '';
+    } else if (this.namePr.length === 0 || this.infoPr.length === 0 || this.pricePr.length === 0 || this.khuVucPr.length === 0 || this.addrUser.length === 0 || this.menuproductPr !== 0) {
+      this.showError();
     }
   }
 
@@ -58,7 +79,10 @@ export class PostComponent implements OnInit {
     reader.readAsDataURL(this.fileToUpload);
   }
 
-  selectChangeHandler (event: any) {
-    this.addrPr = event.target.value;
+  selectChangeHandler(event: any) {
+    this.khuVucPr = event.target.value;
+  }
+  selectChangeHandlerPro(event: any) {
+    this.menuproductPr = event.target.value;
   }
 }
