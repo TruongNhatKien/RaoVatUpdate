@@ -1,0 +1,16 @@
+:host{
+    .content{
+        width: 400px;
+        height: auto;
+        margin: 0 auto;
+        .infoUser{
+            ul{
+                li{
+                    .stt{
+                        display: hide;
+                    }
+                }
+            }
+        }
+    }
+}

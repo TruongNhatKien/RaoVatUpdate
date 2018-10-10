@@ -16,5 +16,6 @@ import { Component, OnInit } from '@angular/core';
 export class LogoutConfirmComponent implements OnInit {
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+   }
 }

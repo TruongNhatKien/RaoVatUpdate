@@ -31,6 +31,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LogoutConfirmComponent } from './header/logout-confirm';
+import { DetailProComponent } from './detail-pro/detail-pro.component';
+import { FixComponent } from './detail-pro/fix';
+import { InfoUserComponent } from './info-user/info-user.component';
+import { UpdateUserComponent } from './info-user/updateUser';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +52,11 @@ import { LogoutConfirmComponent } from './header/logout-confirm';
     SelledComponent,
     SeachComponent,
     PostComponent,
-    LogoutConfirmComponent
+    LogoutConfirmComponent,
+    DetailProComponent,
+    FixComponent,
+    InfoUserComponent,
+    UpdateUserComponent
   ],
 
   exports: [RouterModule],
@@ -74,6 +82,6 @@ import { LogoutConfirmComponent } from './header/logout-confirm';
   bootstrap: [
     AppComponent,
   ],
-  entryComponents: [LogoutConfirmComponent]
+  entryComponents: [LogoutConfirmComponent, FixComponent, UpdateUserComponent]
 })
 export class AppModule { }

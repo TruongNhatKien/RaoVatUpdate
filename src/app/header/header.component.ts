@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../interfaces/User';
 import { LogoutConfirmComponent } from './logout-confirm';
 import { MatDialog } from '@angular/material';
-import { HttpService } from '../providers/http.service';
+import { DetailProService } from '../providers/detail-pro.service';
 
 @Component({
   selector: 'app-header',
@@ -15,18 +15,20 @@ export class HeaderComponent implements OnInit {
   public local = false;
   user: User;
   users: User[];
-  username = '';
+  username: string = '';
+
   constructor(
     private router: Router,
     private dialog: MatDialog,
-    private httpService: HttpService
+    private detailProService: DetailProService
   ) { }
 
   ngOnInit() {
+   
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user'));
       this.local = true;
-      this.username = this.user.email;
+      this.username = this.user.name;
     }
   }
   SignOut() {

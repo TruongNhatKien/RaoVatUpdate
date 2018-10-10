@@ -10,6 +10,8 @@ import { PublishedComponent } from './published/published.component';
 import { SelledComponent } from './selled/selled.component';
 import { PostComponent } from './post/post.component';
 import { SeachComponent } from './seach/seach.component';
+import { DetailProComponent } from './detail-pro/detail-pro.component';
+import { InfoUserComponent } from './info-user/info-user.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -33,7 +35,8 @@ export const appRoutes: Routes = [
         component: PostComponent
       },
     ]
-  }, {
+  }, 
+  {
     path: 'product',
     canActivate: [AuthGuard],
     children: [
@@ -43,6 +46,7 @@ export const appRoutes: Routes = [
       },
     ]
   },
+  
   {
     path: 'user',
     component: AuthenticatedComponent,
@@ -58,6 +62,23 @@ export const appRoutes: Routes = [
     children: [
       { path: 'published/:idUser', component: PublishedComponent },
       { path: 'selled/:idUser', component: SelledComponent },
+    ],
+  },
+  {
+    path: 'product',
+    component: SellComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'published/:idUser/:idProduct', component: DetailProComponent },
+    
+    ],
+  },
+  {
+    path: 'user',
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'info', component: InfoUserComponent },
+    
     ],
   },
   { path: '**', component: NotFoundComponent },

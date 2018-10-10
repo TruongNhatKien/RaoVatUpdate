@@ -3,7 +3,7 @@ export interface User {
     pass: string;
     email: string;
     addr?: string;
-    number?: string;
+    number?: number;
     old?: string;
     sex?: string;
     avata?: string;

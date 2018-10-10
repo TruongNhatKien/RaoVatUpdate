@@ -20,7 +20,7 @@ export class PostComponent implements OnInit {
   infoPr: string = '';
   khuVucPr: string = '';
   menuproductPr: number;
-  addrUser: string;
+  addrUser: string = '';
 
   constructor(
     private httpService: HttpService,
@@ -42,7 +42,7 @@ export class PostComponent implements OnInit {
 
 
   postIfPr() {
-    if (this.addrUser.length !== 0 && this.namePr.length !== 0 && this.khuVucPr.length !== 0 && this.pricePr.length !== 0 && this.infoPr.length !== 0 && this.menuproductPr !== 0) {
+    if (this.addrUser.length !== 0 && this.namePr.length !== 0 && this.khuVucPr.length !== 0 && this.pricePr.length !== 0 && this.infoPr.length !== 0 && this.menuproductPr !== null) {
       const postIf: any = {
         name: this.namePr,
         price: this.pricePr,
@@ -63,7 +63,7 @@ export class PostComponent implements OnInit {
       this.pricePr = '';
       this.infoPr = '';
       this.addrUser = '';
-    } else if (this.namePr.length === 0 || this.infoPr.length === 0 || this.pricePr.length === 0 || this.khuVucPr.length === 0 || this.addrUser.length === 0 || this.menuproductPr !== 0) {
+    } else if (this.namePr.length === 0 || this.infoPr.length === 0 || this.pricePr.length === 0 || this.khuVucPr.length === 0 || this.addrUser.length === 0 || this.menuproductPr === null) {
       this.showError();
     }
   }
@@ -71,7 +71,6 @@ export class PostComponent implements OnInit {
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);
 
-    //Show image preview
     var reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;

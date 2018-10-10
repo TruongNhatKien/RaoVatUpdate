@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../providers/auth.service';
 import { HttpService } from '../providers/http.service';
@@ -73,7 +73,7 @@ export class RegisterComponent implements OnInit {
 
   public register(firstnameRe, lastnamRe, emailRe, passwordRe) {
     const regis: any = {
-      name: firstnameRe + '' + lastnamRe,
+      name: firstnameRe + ' ' + lastnamRe,
       email: emailRe,
       pass: passwordRe,
     };

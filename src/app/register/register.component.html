@@ -23,7 +23,8 @@
             <br>
             <div class="form">
                 <mat-form-field>
-                    <input matInput type="text" id="lastname" class="lastname" placeholder="Last name" formControlName="lastname" #lastnameRe required>
+                    <input matInput type="text" id="lastname" class="lastname" placeholder="Last name" formControlName="lastname"
+                        #lastnameRe required>
                 </mat-form-field>
                 <div *ngIf="registerForm.controls.lastname.invalid && (registerForm.controls.lastname.dirty || registerForm.controls.lastname.touched)"
                     class="alert alert-danger">
@@ -41,7 +42,8 @@
             <br>
             <div class="form">
                 <mat-form-field>
-                    <input matInput type="email" id="email" class=email placeholder="Email" formControlName="email" #emailRe required>
+                    <input matInput type="email" id="email" class=email placeholder="Email" formControlName="email"
+                        #emailRe required>
                 </mat-form-field>
                 <div *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)"
                     class="alert alert-danger">
@@ -62,7 +64,8 @@
             <br>
             <div class="form">
                 <mat-form-field>
-                    <input matInput #password type="password" id="password" class="password" placeholder="Password" formControlName="password" #passwordRe required>
+                    <input matInput #password type="password" id="password" class="password" placeholder="Password"
+                        formControlName="password" #passwordRe required>
                 </mat-form-field>
                 <div *ngIf="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)"
                     class="alert alert-danger">
@@ -115,20 +118,10 @@
                 <a>Matket CK</a>
                 <br>
                 <a routerLink="/user/login">Bạn đã có tài khoản?</a>
-                <button mat-button class="btn" (click)="register(firstnameRe.value, lastnameRe.value, emailRe.value, passwordRe.value)" [disabled]="!registerForm.valid">Đăng kí</button>
+                <button mat-button class="btn" (click)="register(firstnameRe.value, lastnameRe.value, emailRe.value, passwordRe.value)"
+                    [disabled]="!registerForm.valid">Đăng kí</button>
             </div>
         </div>
     </div>
 </form>
 
-<!-- <div *ngIf="users?.length> 0;else noUsers">
-    <ul *ngFor="let user of users" class="collection">
-      <li class="collection-user">
-        <strong>{{user.email}}:</strong>{{user.pass}}</li>
-    </ul>
-  </div>
-  
-  <ng-template #noUsers>
-    <hr>
-    <h5>There are no Users to list</h5>
-  </ng-template> -->

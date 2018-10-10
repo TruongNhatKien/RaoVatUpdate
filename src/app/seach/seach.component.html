@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="form">
   <div class="search">
-    <input type="text" #input (keyup)="search(input.value)" placeholder="Tìm kiếm sản phẩm">
+    <input type="text" #key placeholder="Tìm kiếm sản phẩm">
   </div>
 
   <select id="where" (change)="selectChangeHandler($event)">
@@ -13,6 +13,7 @@
   </select>
   <select id="where" (change)="selectChangeHandlerPro($event)">
     <option disabled>Chọn Danh Mục</option>
+    <option value=12>Tất cả Danh mục</option>
     <option value=1>Chợ Tốt Nhà</option>
     <option value=2>Chợ Tốt Xe</option>
     <option value=3>Đồ Điện Tử</option>
@@ -26,6 +27,27 @@
     <option value=11>Du lịch, Dịch vụ</option>
   </select>
 
-  
+  <button (click)="Search(key.value)">Search</button>
+
+
+  <div class="product">
+    <table cellpadding="5px" cellspacing="10px" class="table">
+      <caption class="listPro">Tìm rao vặt</caption>
+      <tr class="listPro">
+        <th>Tên Sản Phẩm</th>
+        <th>Địa chỉ</th>
+        <th>Giá</th>
+        <th>Liên hệ</th>
+      </tr>
+      <tr *ngFor="let pro of products">
+        <td>{{pro.name}}</td>
+        <td>{{pro.addr}}</td>
+        <td>{{pro.price}}</td>
+        <td>Liên hệ</td>
+      </tr>
+    </table>
+  </div>
+
+
 </div>
 <app-footer></app-footer>

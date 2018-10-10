@@ -1,7 +1,20 @@
-<div class="row">
-  <ul *ngFor="let pro of products" class="col-lg-4 col-md-4 col-sm-4">
-    <li>Tên: {{pro.name}}</li>
-    <li>Địa chỉ: {{pro.addr}}</li>
-    <li>Giá:{{pro.price}}</li>
-  </ul>
-</div>
+<table cellpadding="5px" cellspacing="10px" class="table">
+  <caption class="listPro">Sản phẩm đang bán</caption>
+  <tr class="listPro">
+    <th>Tên Sản Phẩm</th>
+    <th>Địa chỉ</th>
+    <th>Giá</th>
+  </tr>
+  <tr *ngFor="let pro of products" (contextmenu)="onRightClick($event,pro.idProduct)" class="listPro">
+    <td>{{pro.name}}</td>
+    <td>{{pro.addr}}</td>
+    <td>{{pro.price}}</td>
+  </tr>
+  <div class="menu-right">
+    <ul>
+      <li routerLink="/product/published/{{user.idUser}}/{{idProduct}}" class="item-menu-right"><a>Chi tiết</a></li>
+      <li class="item-menu-right" (click)="selled()"><a>Đã bán</a></li>
+      <li class="item-menu-right" (click)="delete()"><a>Xóa</a></li>
+    </ul>
+  </div>
+</table>

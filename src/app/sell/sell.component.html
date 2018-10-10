@@ -1,12 +1,14 @@
-<app-header></app-header>
-<div class="container">
+<div class="sell" (click)="onLeftClick()">
+  <app-header></app-header>
+  <div class="container">
     <h2>Quản lí tin đăng</h2>
-  <div class="content">
-    <ul>
-      <li><a routerLink="/product/published/{{user.idUser}}">Đang bán</a></li>
-      <li><a routerLink="/product/selled/{{user.idUser}}">Đã bán</a></li>
-    </ul>
+    <div class="content">
+      <ul>
+        <li><a (click)="published()" routerLink="/product/published/{{user.idUser}}">Đang bán</a></li>
+        <li><a (click)="selled()" routerLink="/product/selled/{{user.idUser}}">Đã bán</a></li>
+      </ul>
+    </div>
+    <router-outlet></router-outlet>
   </div>
-  <router-outlet></router-outlet>
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
