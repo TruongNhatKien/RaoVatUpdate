@@ -25,6 +25,8 @@ export class HttpService {
   public apiPubUp = 'http://localhost:8080/WebsiteRaoVat/product/update';
   public apiUserUp = 'http://localhost:8080/WebsiteRaoVat/user/update';
   public apiProSear = 'http://localhost:8080/WebsiteRaoVat/product/timkiem';
+  public apiGetUserByIdUser = 'http://localhost:8080/WebsiteRaoVat/user/search';
+  public apiAllPro = 'http://localhost:8080/WebsiteRaoVat/product/search';
 
   constructor(private http: HttpClient) { }
 
@@ -32,9 +34,13 @@ export class HttpService {
     return this.http.post<Product>(this.apiPost, info, httpOptions);
   }
 
-  // getProduct(): any {
-  //   return this.http.get(this.api);
-  // }
+  getProduct(): any {
+    return this.http.get(this.apiAllPro);
+  }
+
+  getUserByIdUser(idUser: number) {
+    return this.http.get<User>(`${this.apiGetUserByIdUser}/${idUser}`);
+  }
 
   reGis(user: User): Observable<User> {
     return this.http.post<User>(this.APIregis, user, httpOptions);

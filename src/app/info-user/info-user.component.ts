@@ -19,6 +19,7 @@ export class InfoUserComponent implements OnInit {
   addrUser: string = '';
   numberUser: number;
   sexUser: string = '';
+  sex: boolean;
   oldUser: number;
   emailUser: string = '';
   constructor(
@@ -35,11 +36,10 @@ export class InfoUserComponent implements OnInit {
         if (users[i].email == this.emailUser) {
           this.nameUser = users[i].name;
           this.addrUser = users[i].addr;
-          this.sexUser = users[i].sex;
           this.oldUser = users[i].old;
           this.numberUser = users[i].number;
           this.emailUser = users[i].email;
-
+          this.sexUser = users[i].sex;
           const user: any = {
             name: this.nameUser,
             addr: this.addrUser,
@@ -67,11 +67,6 @@ export class InfoUserComponent implements OnInit {
       if (isConfirm) {
         this.httpService.putUserUpdate(this.user).subscribe(user => {
           if (user) {
-            // if(user.sex == true){
-            //   this.sexUser = "Nam";
-            // } else{
-            //   this.sexUser = "Nữ"
-            // }
             this.nameUser = user.name;
             this.addrUser = user.addr;
             this.numberUser = user.number;

@@ -7,14 +7,23 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class InfoUserService {
 
-  user=new BehaviorSubject<User>(null);
+  user = new BehaviorSubject<User>(null);
+  sex = new BehaviorSubject<boolean>(null);
   constructor() { }
 
-  infoUser(user){
+  infoUser(user) {
     this.user.next(user);
   }
-  
-  getInfoUser(){
+
+  getInfoUser() {
     return this.user.asObservable();
+  }
+
+  sexUser(sex){
+    this.sex.next(sex);
+  }
+
+  getSexUser(){
+    return this.sex.asObservable();
   }
 }

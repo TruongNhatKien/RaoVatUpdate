@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../providers/http.service';
 import { Product } from '../interfaces/Product';
+import { MatDialog } from '@angular/material';
+import { ContactComponent } from './contact';
+import { SearchService } from '../providers/search.service';
+import { ToastrService } from 'ngx-toastr';
+declare var $: any;
 @Component({
   selector: 'app-seach',
   templateUrl: './seach.component.html',
@@ -11,11 +16,23 @@ export class SeachComponent implements OnInit {
   khuVucPr: string = "TQ";
   menuproductPr: number = 12;
   constructor(
-    private httpService: HttpService
+    private httpService: HttpService,
+    private dialog: MatDialog,
+    private searchService: SearchService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
+    $('.nodata').hide();
+    this.httpService.getProduct().subscribe(products => {
+      this.products = products;
+    });
   }
+
+  showError() {
+    this.toastr.error('Sản phẩm vừa tìm không có, Vui lòng thử lại !');
+  }
+
   selectChangeHandler(event: any) {
     this.khuVucPr = event.target.value;
   }
@@ -32,7 +49,23 @@ export class SeachComponent implements OnInit {
     this.httpService.searchPro(Search).subscribe(products => {
       this.products = products;
       if (this.products.length === 0) {
-        // $('.product').hide();
+        $('.product').hide();
+        $('.nodata').show();
+        this.showError();
+      } else{
+        $('.product').show();
+        $('.nodata').hide();
+      }
+    })
+  }
+
+  contact(idUser) {
+    this.searchService.idUs(idUser);
+    let dialogRef = this.dialog.open(ContactComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe((isConfirm) => {
+      if (isConfirm) {
       }
     })
   }

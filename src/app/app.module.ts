@@ -35,6 +35,7 @@ import { DetailProComponent } from './detail-pro/detail-pro.component';
 import { FixComponent } from './detail-pro/fix';
 import { InfoUserComponent } from './info-user/info-user.component';
 import { UpdateUserComponent } from './info-user/updateUser';
+import { ContactComponent } from './seach/contact';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { UpdateUserComponent } from './info-user/updateUser';
     DetailProComponent,
     FixComponent,
     InfoUserComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    ContactComponent
   ],
 
   exports: [RouterModule],
@@ -82,6 +84,6 @@ import { UpdateUserComponent } from './info-user/updateUser';
   bootstrap: [
     AppComponent,
   ],
-  entryComponents: [LogoutConfirmComponent, FixComponent, UpdateUserComponent]
+  entryComponents: [LogoutConfirmComponent, FixComponent, UpdateUserComponent, ContactComponent]
 })
 export class AppModule { }

@@ -19,7 +19,6 @@ export class DetailProComponent implements OnInit {
   idProduct: number;
   idUser: number;
   productsPub: Product[];
-  productsSel: Product[];
   product: Product;
   namePro: string = "";
   pricePro: number;
@@ -47,54 +46,29 @@ export class DetailProComponent implements OnInit {
   load() {
     this.idProduct = +this.activateService.snapshot.params.idProduct;
     this.idUser = this.activateService.snapshot.params.idUser;
-    (this.detailProService.getIsClick().subscribe(data => {
-      if (data == true) {
-        this.httpService.getPublished(this.idUser).subscribe(products => {
-          this.productsPub = products;
-          for (let i = 0; i < this.productsPub.length; i++) {
-            if (this.productsPub[i].idProduct === this.idProduct) {
-              this.namePro = this.productsPub[i].name;
-              this.infoPro = this.productsPub[i].info;
-              this.pricePro = this.productsPub[i].price;
-              this.addrPro = this.productsPub[i].addr;
+    this.detailProService.getIsClick().subscribe(data => {
+      this.httpService.getPublished(this.idUser).subscribe(products => {
+        this.productsPub = products;
+        for (let i = 0; i < this.productsPub.length; i++) {
+          if (this.productsPub[i].idProduct === this.idProduct) {
+            this.namePro = this.productsPub[i].name;
+            this.infoPro = this.productsPub[i].info;
+            this.pricePro = this.productsPub[i].price;
+            this.addrPro = this.productsPub[i].addr;
 
-              const pro: any = {
-                idProduct: this.idProduct,
-                name: this.namePro,
-                price: this.pricePro,
-                info: this.infoPro,
-                addr: this.addrPro,
-              }
-              this.detailProService.detailPro(pro);
-              this.product = pro;
+            const pro: any = {
+              idProduct: this.idProduct,
+              name: this.namePro,
+              price: this.pricePro,
+              info: this.infoPro,
+              addr: this.addrPro,
             }
+            this.detailProService.detailPro(pro);
+            this.product = pro;
           }
-        });
-      } else {
-        this.httpService.getSelled(this.idUser).subscribe(products => {
-          this.productsSel = products;
-          for (let i = 0; i < this.productsSel.length; i++) {
-            if (this.productsSel[i].idProduct === this.idProduct) {
-              this.namePro = this.productsSel[i].name;
-              this.infoPro = this.productsSel[i].info;
-              this.pricePro = this.productsSel[i].price;
-              this.addrPro = this.productsSel[i].addr;
-
-              const pro: any = {
-                idProduct: this.idProduct,
-                name: this.namePro,
-                price: this.pricePro,
-                info: this.infoPro,
-                addr: this.addrPro,
-              }
-              this.detailProService.detailPro(pro);
-              this.product = pro;
-            }
-          }
-        });
-      }
-    }));
-
+        }
+      });
+    });
   }
 
   fix() {
@@ -103,7 +77,7 @@ export class DetailProComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((isConfirm) => {
       if (isConfirm) {
-       this.httpService.putPublishedUpdate(this.product).subscribe(pro => {
+        this.httpService.putPublishedUpdate(this.product).subscribe(pro => {
           console.log(pro);
           if (pro) {
             this.namePro = pro.name;

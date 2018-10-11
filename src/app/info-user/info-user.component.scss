@@ -5,9 +5,13 @@
         margin: 0 auto;
         .infoUser{
             ul{
+                height: auto;
+                padding-bottom: 30px;
                 li{
+                    list-style-type: none;
                     .stt{
                         display: hide;
+                         
                     }
                 }
             }

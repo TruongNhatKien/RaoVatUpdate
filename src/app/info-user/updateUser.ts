@@ -16,13 +16,14 @@ import { InfoUserService } from '../providers/info-user.service';
     </mat-form-field>
     <mat-form-field>
       <input matInput [(ngModel)]="user.number" placeholder="Số điện thoại">
-    </mat-form-field>
+    </mat-form-field>   
     <mat-form-field>
-      <input matInput [(ngModel)]="user.sex" placeholder="Giới tính">
+    <input matInput [(ngModel)]="user.sex" placeholder="Giới tính">
     </mat-form-field>
     <mat-form-field>
       <input matInput [(ngModel)]="user.old" placeholder="Tuổi">
     </mat-form-field>
+   
 
   <mat-dialog-actions>
     <button mat-button mat-raised-button color="primary" [mat-dialog-close]="true">Sửa</button>
@@ -32,6 +33,10 @@ import { InfoUserService } from '../providers/info-user.service';
     `
     mat-dialog-actions{
       justify-content: center;
+    }
+    select{
+      with:auto;
+      padding:2px;
     }
     mat-form-field{
       width:350px;
@@ -45,19 +50,18 @@ import { InfoUserService } from '../providers/info-user.service';
 
 export class UpdateUserComponent implements OnInit {
   user: User;
+  sexUser:boolean;
 
   constructor(
-    private infoUserService:InfoUserService,
+    private infoUserService: InfoUserService,
     private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.infoUserService.getInfoUser().subscribe(data => {
       this.user = data;
-      console.log(this.user);
     });
   }
-
   showError() {
     this.toastr.error('Vui lòng nhập tất cả thông tin! Không để trông !');
   }

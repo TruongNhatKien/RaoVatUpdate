@@ -53,8 +53,4 @@ export class FixComponent implements OnInit {
       this.product = data;
     });
   }
-
-  showError() {
-    this.toastr.error('Vui lòng nhập tất cả thông tin! Không để trông !');
-  }
 }

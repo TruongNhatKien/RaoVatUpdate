@@ -27,9 +27,11 @@
     <option value=11>Du lịch, Dịch vụ</option>
   </select>
 
-  <button (click)="Search(key.value)">Search</button>
+  <button (click)="Search(key.value)" mat-stroked-button color="link">Search</button>
 
-
+  <div class="nodata">
+    <img src="./assets/nodata.png" alt="nodata">
+  </div>
   <div class="product">
     <table cellpadding="5px" cellspacing="10px" class="table">
       <caption class="listPro">Tìm rao vặt</caption>
@@ -43,7 +45,7 @@
         <td>{{pro.name}}</td>
         <td>{{pro.addr}}</td>
         <td>{{pro.price}}</td>
-        <td>Liên hệ</td>
+        <td	id="contact" (click)="contact(pro.idUser)"><button mat-stroked-button color="primary">Liên hệ</button></td>
       </tr>
     </table>
   </div>
