@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../interfaces/User';
 import { HttpService } from '../providers/http.service';
 import { DetailProService } from '../providers/detail-pro.service';
+import { Title } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -13,11 +14,12 @@ export class SellComponent implements OnInit {
   user: User;
   isClick = true;
   constructor(
-    private httpService: HttpService,
-    private detailPrService: DetailProService
+    private titleService: Title,
+    private detailPrService: DetailProService,
   ) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Tôi Bán');
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user'));
     }

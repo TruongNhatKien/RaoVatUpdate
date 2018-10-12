@@ -27,6 +27,7 @@ export class HttpService {
   public apiProSear = 'http://localhost:8080/WebsiteRaoVat/product/timkiem';
   public apiGetUserByIdUser = 'http://localhost:8080/WebsiteRaoVat/user/search';
   public apiAllPro = 'http://localhost:8080/WebsiteRaoVat/product/search';
+  public apiDeletePro = 'http://localhost:8080/WebsiteRaoVat/product';
 
   constructor(private http: HttpClient) { }
 
@@ -38,7 +39,11 @@ export class HttpService {
     return this.http.get(this.apiAllPro);
   }
 
-  getUserByIdUser(idUser: number) {
+  deletePro(idProduct: number) {
+    return this.http.delete(`${this.apiDeletePro}/${idProduct}`);
+  }
+
+  getUserByIdUser(idUser: any) {
     return this.http.get<User>(`${this.apiGetUserByIdUser}/${idUser}`);
   }
 

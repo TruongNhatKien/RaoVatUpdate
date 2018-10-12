@@ -78,7 +78,6 @@ export class DetailProComponent implements OnInit {
     dialogRef.afterClosed().subscribe((isConfirm) => {
       if (isConfirm) {
         this.httpService.putPublishedUpdate(this.product).subscribe(pro => {
-          console.log(pro);
           if (pro) {
             this.namePro = pro.name;
             this.pricePro = pro.price;

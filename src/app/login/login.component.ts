@@ -5,6 +5,7 @@ import { AuthService } from '../providers/auth.service';
 import { User } from '../interfaces/User';
 import { HttpService } from '../providers/http.service';
 import { ToastrService } from 'ngx-toastr';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -20,14 +21,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService,
     private httpService: HttpService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private titleService: Title
 
   ) { }
 
   ngOnInit() {
     this.buildForm();
+    this.titleService.setTitle('Đăng Nhập');
   }
 
   showSuccess() {

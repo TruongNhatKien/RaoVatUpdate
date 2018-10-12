@@ -5,7 +5,7 @@ export interface User {
     addr?: string;
     number?: number;
     old?: string;
-    sex?: string;
+    sex?: boolean;
     avata?: string;
     cash?:number;
     idUser?:number;

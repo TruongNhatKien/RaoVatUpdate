@@ -50,7 +50,7 @@ import { InfoUserService } from '../providers/info-user.service';
 
 export class UpdateUserComponent implements OnInit {
   user: User;
-  sexUser:boolean;
+  sexUser: string = "";
 
   constructor(
     private infoUserService: InfoUserService,
@@ -60,6 +60,14 @@ export class UpdateUserComponent implements OnInit {
   ngOnInit() {
     this.infoUserService.getInfoUser().subscribe(data => {
       this.user = data;
+      // if (this.user.sex == true) {
+      //   this.sexUser = "Nam";
+      // } else if (this.user.sex == false) {
+      //   this.sexUser = "Nữ";
+      // } else {
+      //   this.sexUser = "";
+      // }
+      // this.infoUserService.sexUser(this.sexUser);
     });
   }
   showError() {

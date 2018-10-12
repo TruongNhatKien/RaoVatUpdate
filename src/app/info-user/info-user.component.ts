@@ -39,6 +39,16 @@ export class InfoUserComponent implements OnInit {
           this.oldUser = users[i].old;
           this.numberUser = users[i].number;
           this.emailUser = users[i].email;
+          // if (users[i].sex == true) {
+          //   this.sexUser = "Nam";
+          //   this.sex = true;
+          // } else if (users[i].sex == false) {
+          //   this.sexUser = "Nữ";
+          //   this.sex = false;
+          // } else {
+          //   this.sexUser = "";
+          //   this.sex = null;
+          // }
           this.sexUser = users[i].sex;
           const user: any = {
             name: this.nameUser,
@@ -63,8 +73,12 @@ export class InfoUserComponent implements OnInit {
     let dialogRef = this.dialog.open(UpdateUserComponent, {
       width: '400px'
     });
+  
     dialogRef.afterClosed().subscribe((isConfirm) => {
       if (isConfirm) {
+        // this.infoUserService.getSexUser().subscribe(sex=>{
+        //   console.log(sex);
+        // })
         this.httpService.putUserUpdate(this.user).subscribe(user => {
           if (user) {
             this.nameUser = user.name;

@@ -16,7 +16,7 @@ export class PostComponent implements OnInit {
   user: User;
 
   namePr: string = '';
-  pricePr: string = '';
+  pricePr: number;
   infoPr: string = '';
   khuVucPr: string = '';
   menuproductPr: number;
@@ -42,7 +42,7 @@ export class PostComponent implements OnInit {
 
 
   postIfPr() {
-    if (this.addrUser.length !== 0 && this.namePr.length !== 0 && this.khuVucPr.length !== 0 && this.pricePr.length !== 0 && this.infoPr.length !== 0 && this.menuproductPr !== null) {
+    if (this.addrUser.length !== 0 && this.namePr.length !== 0 && this.khuVucPr.length !== 0 && this.pricePr !== null && this.infoPr.length !== 0 && this.menuproductPr !== null) {
       const postIf: any = {
         name: this.namePr,
         price: this.pricePr,
@@ -60,10 +60,10 @@ export class PostComponent implements OnInit {
         this.showSuccess();
       });
       this.namePr = '';
-      this.pricePr = '';
+      this.pricePr = null;
       this.infoPr = '';
       this.addrUser = '';
-    } else if (this.namePr.length === 0 || this.infoPr.length === 0 || this.pricePr.length === 0 || this.khuVucPr.length === 0 || this.addrUser.length === 0 || this.menuproductPr === null) {
+    } else if (this.namePr.length === 0 || this.infoPr.length === 0 || this.pricePr === null || this.khuVucPr.length === 0 || this.addrUser.length === 0 || this.menuproductPr === null) {
       this.showError();
     }
   }

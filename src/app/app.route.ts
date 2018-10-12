@@ -70,7 +70,6 @@ export const appRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'published/:idUser/:idProduct', component: DetailProComponent },
-    
     ],
   },
   {
