@@ -18,6 +18,7 @@ import { Title } from '@angular/platform-browser';
 export class RegisterComponent implements OnInit {
 
   user: User;
+  userLg: User;
   registerForm: FormGroup;
   public checkbox = false;
   public formErrors = {
@@ -49,8 +50,12 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userLg = JSON.parse(localStorage.getItem('user'));
+    if (this.userLg != null) {
+      this.router.navigate(['/home']);
+    }
     this.buildForm();
-    this.titleService.setTitle('Đăng kí');
+    this.titleService.setTitle('Register');
   }
 
   isCheckbox() {

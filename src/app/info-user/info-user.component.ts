@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { UpdateUserComponent } from './updateUser';
 import { InfoUserService } from '../providers/info-user.service';
 import { ToastrService } from 'ngx-toastr';
+import { Title } from '@angular/platform-browser';
 
 declare var $: any;
 
@@ -26,10 +27,13 @@ export class InfoUserComponent implements OnInit {
     private dialog: MatDialog,
     private httpService: HttpService,
     private toastr: ToastrService,
-    private infoUserService: InfoUserService
+    private infoUserService: InfoUserService,
+    private titleService: Title,
+
   ) { }
 
   ngOnInit() {
+    this.titleService.setTitle("Infomation User");
     this.emailUser = JSON.parse(localStorage.getItem('user')).email;
     this.httpService.getUser().subscribe(users => {
       for (let i = 0; i < users.length; i++) {

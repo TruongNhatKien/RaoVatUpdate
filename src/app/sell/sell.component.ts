@@ -19,7 +19,7 @@ export class SellComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.titleService.setTitle('Tôi Bán');
+    this.titleService.setTitle('Sell');
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user'));
     }

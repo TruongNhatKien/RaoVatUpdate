@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { ContactComponent } from './contact';
 import { SearchService } from '../providers/search.service';
 import { ToastrService } from 'ngx-toastr';
+import { Title } from '@angular/platform-browser';
 declare var $: any;
 @Component({
   selector: 'app-seach',
@@ -19,10 +20,12 @@ export class SeachComponent implements OnInit {
     private httpService: HttpService,
     private dialog: MatDialog,
     private searchService: SearchService,
-    private toastr: ToastrService
+    private titleService: Title,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Search');
     $('.nodata').hide();
     this.httpService.getProduct().subscribe(products => {
       this.products = products;

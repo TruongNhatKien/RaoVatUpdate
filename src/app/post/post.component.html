@@ -7,6 +7,7 @@
       <option value="HCM">Hồ Chí Minh</option>
       <option value="DN">Đà Nẵng</option>
     </select>
+    
     <select class="where" (change)="selectChangeHandlerPro($event)">
       <option disabled>Chọn Danh Mục</option>
       <option value=1>Chợ Tốt Nhà</option>
@@ -24,17 +25,17 @@
 
     <input type="text" class="form-control" placeholder="Nhập tên sản phẩm cần đăng tin" [(ngModel)]="namePr"
       [ngModelOptions]="{standalone: true}" required>
-    <input class="form-control" id="price" placeholder="Giá" type="number" min="0" [(ngModel)]="pricePr"
+    <input class="form-control" id="price" placeholder="Giá" type="number" min="0" maxlength="10" [(ngModel)]="pricePr"
       [ngModelOptions]="{standalone: true}" required>
     <input type="text" class="form-control" placeholder="Nhập địa chỉ của bạn" [(ngModel)]="addrUser" [ngModelOptions]="{standalone: true}"
       required>
     <textarea class="form-control" id="info" placeholder="Thông tin sản phẩm " rows="5" [(ngModel)]="infoPr"
       [ngModelOptions]="{standalone: true}"></textarea>
-    <div class="uploadimg">
+    <!-- <div class="uploadimg">
       <img [src]="imageUrl">
       <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
-    </div>
-    <button class="post" (click)="postIfPr()">Đăng tin</button>
+    </div> -->
+    <button class="post" mat-raised-button color="primary" (click)="postIfPr()">Đăng tin</button>
   </div>
 </form>
 <div class="foot">

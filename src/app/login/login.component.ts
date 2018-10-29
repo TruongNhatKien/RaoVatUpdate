@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
   user: User;
+  userLg: User;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,8 +29,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userLg = JSON.parse(localStorage.getItem('user'));
+    if (this.userLg != null) {
+      this.router.navigate(['/home']);
+    }
     this.buildForm();
-    this.titleService.setTitle('Đăng Nhập');
+    this.titleService.setTitle('Login');
   }
 
   showSuccess() {

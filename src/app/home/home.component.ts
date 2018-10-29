@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../providers/http.service';
 import { User } from '../interfaces/User';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,11 @@ import { User } from '../interfaces/User';
 })
 export class HomeComponent implements OnInit {
   constructor(
-    private httpService:HttpService
+    private titleService: Title,
+
   ) { }
 
   ngOnInit() {
-   
+    this.titleService.setTitle("Home")
   }
 }

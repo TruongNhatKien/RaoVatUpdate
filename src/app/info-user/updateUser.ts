@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../interfaces/User';
 import { InfoUserService } from '../providers/info-user.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-updateUser',
@@ -17,9 +18,7 @@ import { InfoUserService } from '../providers/info-user.service';
     <mat-form-field>
       <input matInput [(ngModel)]="user.number" placeholder="Số điện thoại">
     </mat-form-field>   
-    <mat-form-field>
-    <input matInput [(ngModel)]="user.sex" placeholder="Giới tính">
-    </mat-form-field>
+   
     <mat-form-field>
       <input matInput [(ngModel)]="user.old" placeholder="Tuổi">
     </mat-form-field>
@@ -54,10 +53,12 @@ export class UpdateUserComponent implements OnInit {
 
   constructor(
     private infoUserService: InfoUserService,
+    private titleService: Title,
     private toastr: ToastrService
   ) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Contact');
     this.infoUserService.getInfoUser().subscribe(data => {
       this.user = data;
       // if (this.user.sex == true) {

@@ -29,7 +29,7 @@ export class PublishedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.titleService.setTitle('Đang Bán')
+    this.titleService.setTitle('Published')
     this.user = JSON.parse(localStorage.getItem('user'));
     this.httpService.getPublished(this.user.idUser).subscribe(products => {
       this.products = products;

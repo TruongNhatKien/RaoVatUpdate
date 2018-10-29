@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../providers/http.service';
 import { User } from '../interfaces/User';
 import { ToastrService } from 'ngx-toastr';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -24,10 +25,13 @@ export class PostComponent implements OnInit {
 
   constructor(
     private httpService: HttpService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private titleService: Title,
+    
   ) { }
 
   ngOnInit() {
+    this.titleService.setTitle("Post Product");
     this.imageUrl;
     this.user = JSON.parse(localStorage.getItem('user'));
   }
@@ -42,7 +46,7 @@ export class PostComponent implements OnInit {
 
 
   postIfPr() {
-    if (this.addrUser.length !== 0 && this.namePr.length !== 0 && this.khuVucPr.length !== 0 && this.pricePr !== null && this.infoPr.length !== 0 && this.menuproductPr !== null) {
+    if (this.addrUser.length !== 0 && this.namePr.length !== 0 && this.khuVucPr.length !== 0 && this.pricePr !== null && this.infoPr.length !== 0 && this.menuproductPr != null) {
       const postIf: any = {
         name: this.namePr,
         price: this.pricePr,
@@ -63,7 +67,7 @@ export class PostComponent implements OnInit {
       this.pricePr = null;
       this.infoPr = '';
       this.addrUser = '';
-    } else if (this.namePr.length === 0 || this.infoPr.length === 0 || this.pricePr === null || this.khuVucPr.length === 0 || this.addrUser.length === 0 || this.menuproductPr === null) {
+    } else if (this.namePr.length === 0 || this.infoPr.length === 0 || this.pricePr === null || this.khuVucPr.length === 0 || this.addrUser.length === 0 || this.menuproductPr == null) {
       this.showError();
     }
   }

@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material';
 import { FixComponent } from './fix';
 import { DetailProService } from '../providers/detail-pro.service';
 import { ToastrService } from 'ngx-toastr';
+import { Title } from '@angular/platform-browser';
 
 declare var $: any;
 
@@ -32,9 +33,12 @@ export class DetailProComponent implements OnInit {
     private dialog: MatDialog,
     private detailProService: DetailProService,
     private toastr: ToastrService,
+    private titleService: Title,
+
   ) { }
 
   ngOnInit() {
+    this.titleService.setTitle("Detail Product")
     this.load();
     this.user = JSON.parse(localStorage.getItem('user'));
   }
